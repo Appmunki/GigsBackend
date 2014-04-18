@@ -1,0 +1,8 @@
+Login to get the auth token as usual
+login: curl -v -H 'Content-Type: application/json' -H 'Accept: application/json' -X POST http://localhost:3000/api/v1/sessions -d "{\"user\":{\"email\":\"user@example.com\",\"password\":\"secret\"}}"
+
+Logout and all other calls needs the email and token
+logout: curl -v -H 'Content-Type: application/json' -H 'Accept: application/json' -X DELETE http://localhost:3000/api/v1/sessions/\?user_token\=vkJJKjZ243zHCV1spiCP\&user_email=radzell@appmunki.com
+
+How to register
+register: curl -v -H 'Content-Type: application/json' -H 'Accept: application/json' -X POST http://localhost:3000/api/v1/registrations -d "{\"user\":{\"email\":\"user1@example.com\",\"name\":\"anotheruser\",\"password\":\"secretpass\",\"password_confirmation\":\"secretpass\"}}"
