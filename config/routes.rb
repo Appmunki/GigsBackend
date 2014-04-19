@@ -11,6 +11,7 @@ GigBackend::Application.routes.draw do
                 post 'sessions' => 'sessions#create', :as => 'login'
                 delete 'sessions' => 'sessions#destroy', :as => 'logout'
             end
+            get 'resturants' => 'resturants#index', :as => 'resturants'
         end
     end
 

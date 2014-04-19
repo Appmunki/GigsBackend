@@ -1,13 +1,13 @@
 class ApplicationController < ActionController::Base
     protect_from_forgery
     
-    acts_as_token_authentication_handler_for User
+    #acts_as_token_authentication_handler_for User
     # This is our new function that comes before Devise's one
-    before_filter :authenticate_user_from_token!
+    #before_filter :authenticate_user_from_token!
     # This is Devise's authentication
-    before_filter :authenticate_user!
+    #before_filter :authenticate_user!
 
-    private
+    '''private
 
     def authenticate_user_from_token!
         user_email = params[:user_email].presence
@@ -19,5 +19,5 @@ class ApplicationController < ActionController::Base
         if user && Devise.secure_compare(user.authentication_token, params[:user_token])
             sign_in user, store: false
         end
-    end
+    end'''
 end
