@@ -1,0 +1,6 @@
+* Listview used multiple linearviews instead of a relativeview, so I used a relativeview
+* radiobutton was an imageview, so I turned it into a radiobutton
+* the information retrieve the data from the server twice instead of loading the db, so I loaded the info from the db
+* the application used an arrayadapter instead of an cursoradapter for loading the listview, ssos I changed it into a cursor adapter
+* instead of updating a cursor adapter I swap out the cursor when the asynctask was finished
+

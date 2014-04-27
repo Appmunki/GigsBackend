@@ -2,7 +2,7 @@ GigBackend::Application.routes.draw do
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
 
-    devise_for :users
+  devise_for :users
   ActiveAdmin.routes(self)
     namespace :api do
         namespace :v1 do
@@ -11,7 +11,14 @@ GigBackend::Application.routes.draw do
                 post 'sessions' => 'sessions#create', :as => 'login'
                 delete 'sessions' => 'sessions#destroy', :as => 'logout'
             end
-            get 'resturants' => 'resturants#index', :as => 'resturants'
+                  
+            get 'gigs' => 'gigs#index', :as => 'gigs'
+            get 'gigs/:id' => 'gigs#show'        
+            post 'gigs' => 'gigs#create', :as => 'gigs'
+            
+
+            post 'employer/assign' => 'gigs#assign', :as => 'employer/assign'
+
         end
     end
 

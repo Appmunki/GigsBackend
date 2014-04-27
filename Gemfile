@@ -36,7 +36,9 @@ gem 'devise'
 # gem 'capistrano'
 
 # To use debugger
+gem 'rabl'
 gem 'debugger'
 gem 'simple_token_authentication'
 gem 'activeadmin'
+gem 'rollable'
 gem 'meta_search', '>= 1.1.0.pre' # activeadmin needs this if Rails >= 3.1
