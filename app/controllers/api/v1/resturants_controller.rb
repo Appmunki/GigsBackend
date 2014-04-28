@@ -12,7 +12,7 @@ class Api::V1::ResturantsController < ApplicationController
                    "success":true,
                      "info":"ok",
                        "data":{
-                                 "tasks":[
+                                 "tnnasks":[
                                                      {"title":"Complete the app"},
                                                                          {"title":"Complete the tutorial"}
                                                                                            ]
