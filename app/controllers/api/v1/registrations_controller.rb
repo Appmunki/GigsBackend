@@ -7,8 +7,8 @@ class Api::V1::RegistrationsController < Devise::RegistrationsController
     respond_to :json
 
     def create
-        @resource = Worker.new(params[:user]) if params[:role]=='worker'
-        @resource = Employer.new(params[:user]) if params[:role]=='employer' 
+        @resource = Worker.new(params[:user]) if params[:user][:type]=='Worker'
+        @resource = Employer.new(params[:user]) if params[:user][:type]=='Employer' 
 
         @resource.skip_confirmation!
         if @resource.save
