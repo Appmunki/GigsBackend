@@ -9,8 +9,5 @@ class User < ActiveRecord::Base
     attr_accessible :user_type,:name, :email, :password, :password_confirmation, :remember_me, :authentication_token
     # attr_accessible :title, :body
 
-    # You likely have this before callback set up for the token.
-    before_save :ensure_authentication_token
 
-    belongs_to :user_type, :polymorphic => true
 end

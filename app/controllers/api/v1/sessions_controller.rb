@@ -1,10 +1,9 @@
 class Api::V1::SessionsController < Devise::SessionsController
-    prepend_before_filter :require_no_authentication, :only => [:create ]
-    before_filter :ensure_params_exist
+    acts_as_token_authentication_handler_for User
+    before_filter :authenticate_user!
 
-    
+
     respond_to :json
-    skip_before_filter :verify_authenticity_token
 
     
 
@@ -20,9 +19,6 @@ class Api::V1::SessionsController < Devise::SessionsController
     end
 
     def destroy
-        #sign_out(resource_name)
-        logger.debug resource_name
-        logger.debug current_user.inspect
         warden.authenticate!(:scope => resource_name, :recall => "#{controller_path}#failure")
         current_user.update_column(:authentication_token, nil)
         render :status => 200,
@@ -31,6 +27,7 @@ class Api::V1::SessionsController < Devise::SessionsController
                        :data => {} }
     end
     protected
+    
     def ensure_params_exist
         return unless params[:email].blank?
         render :json=>{:success=>false, :message=>"missing user_login parameter"}, :status=>422
