@@ -7,6 +7,7 @@ class Api::V1::RegistrationsController < Devise::RegistrationsController
     respond_to :json
 
     def create
+        logger.debug  params[:user]
         @resource = Worker.new(params[:user]) if params[:user][:type]=='Worker'
         @resource = Employer.new(params[:user]) if params[:user][:type]=='Employer' 
 
@@ -16,15 +17,19 @@ class Api::V1::RegistrationsController < Devise::RegistrationsController
                 :json => { :success => true,
                            :info => "Registered",
                            :data => { :email => @resource.email,
-                                      :auth_token => @resource.authentication_token } }
+                                      :auth_token => @resource.authentication_token,
+                                      :type => @resource.type } }
             return
         else
           warden.custom_failure!
-          render :json=> user.errors, :status=>422
+          render :json=> @resource.errors, :status=>422
         end
     end
     protected
-
+    def ensure_params_exist
+        return unless params[:user].blank? or params[:user][:email].blank? or params[:user][:password].blank? or params[:user][:password_confirmation].blank?
+        render :json=>{:success=>false, :message=>"missing user parameter"}, :status=>422
+    end
     def invalid_login_attempt
       render :json=> {:success=>false, :message=>"Error with your login or password"}, :status=>401
     end

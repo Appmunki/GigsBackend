@@ -8,11 +8,11 @@ class Api::V1::SessionsController < Devise::SessionsController
     
 
     def create
-        resource = User.find_for_database_authentication(:email => params[:email])
+        resource = User.find_for_database_authentication(:email => params[:user][:email])
         return invalid_login_attempt unless resource
-        if resource.valid_password?(params[:password])
+        if resource.valid_password?(params[:user][:password])
             sign_in("user", resource)
-            render :json=> {:success=>true, :auth_token=>resource.authentication_token, :email=>resource.email}
+            render :json=> {:success=>true, :auth_token=>resource.authentication_token, :email=>resource.email,:type =>resource.type}
             return
         end
         invalid_login_attempt
@@ -29,8 +29,8 @@ class Api::V1::SessionsController < Devise::SessionsController
     protected
     
     def ensure_params_exist
-        return unless params[:email].blank?
-        render :json=>{:success=>false, :message=>"missing user_login parameter"}, :status=>422
+        return unless params[:user].blank? or params[:user][:email].blank? or params[:user][:password].blank?
+        render :json=>{:success=>false, :message=>"missing user parameter"}, :status=>422
     end
 
     def invalid_login_attempt
