@@ -16,8 +16,8 @@ class Api::V1::RegistrationsController < Devise::RegistrationsController
             render :status => 200,
                 :json => { :success => true,
                            :info => "Registered",
-                           :data => { :email => @resource.email,
-                                      :auth_token => @resource.authentication_token,
+                           :data => { :user => @resource,
+                                      :info => "Registered",
                                       :type => @resource.type } }
             return
         else

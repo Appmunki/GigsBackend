@@ -12,7 +12,7 @@ class Api::V1::SessionsController < Devise::SessionsController
         return invalid_login_attempt unless resource
         if resource.valid_password?(params[:user][:password])
             sign_in("user", resource)
-            render :json=> {:success=>true, :auth_token=>resource.authentication_token, :user=>resource }
+            render :json=> {:success=>true, :info => "Logged in", :user=>resource }
             return
         end
         invalid_login_attempt
