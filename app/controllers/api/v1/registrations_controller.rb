@@ -16,9 +16,7 @@ class Api::V1::RegistrationsController < Devise::RegistrationsController
             render :status => 200,
                 :json => { :success => true,
                            :info => "Registered",
-                           :data => { :user => @resource,
-                                      :info => "Registered",
-                                      :type => @resource.type } }
+                           :data => { :user => @resource} }
             return
         else
           warden.custom_failure!
