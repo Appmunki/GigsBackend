@@ -15,7 +15,7 @@ class User < ActiveRecord::Base
         :recoverable, :rememberable, :trackable, :validatable
 
     # Setup accessible (or protected) attributes for your model
-    attr_accessible :type,:username,:name, :email, :password, :password_confirmation, :remember_me, :authentication_token
+    attr_accessible :data,:blox_id,:type,:username,:name, :email, :password, :password_confirmation, :remember_me, :authentication_token
     # attr_accessible :title, :body
 
     def generate_session
@@ -37,11 +37,9 @@ class User < ActiveRecord::Base
     def quick_blok_save
 
       blox = Quickblox.new
-      results=blox.signup_user(:user=>{:login=>self.username,:password=>self.password,:email=>self.email,:tag_list=>self.user_type})
-
-      puts "results #{results}"
+      results = blox.signup_user(:user=>{:external_user_id => self.id,:login=>self.username,:password=>self.password,:email=>self.email,:tag_list=>self.user_type})
       #todo do something if this fails
-
+      @results
     end
     def skip_confirmation!
       self.confirmed_at = Time.now
