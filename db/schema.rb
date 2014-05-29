@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140509040424) do
+ActiveRecord::Schema.define(:version => 20140529113529) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.string   "resource_id",   :null => false
@@ -43,9 +43,6 @@ ActiveRecord::Schema.define(:version => 20140509040424) do
     t.datetime "updated_at",                             :null => false
   end
 
-  add_index "admin_users", ["email"], :name => "index_admin_users_on_email", :unique => true
-  add_index "admin_users", ["reset_password_token"], :name => "index_admin_users_on_reset_password_token", :unique => true
-
   create_table "conversations", :force => true do |t|
     t.string   "subject",    :default => ""
     t.datetime "created_at",                 :null => false
@@ -61,6 +58,8 @@ ActiveRecord::Schema.define(:version => 20140509040424) do
     t.datetime "updated_at",  :null => false
     t.integer  "worker_id"
     t.integer  "employer_id"
+    t.float    "longitude"
+    t.float    "latitude"
   end
 
   create_table "jobs", :force => true do |t|
@@ -136,6 +135,8 @@ ActiveRecord::Schema.define(:version => 20140509040424) do
     t.string   "type"
     t.integer  "gig_id"
     t.string   "username"
+    t.float    "longitude"
+    t.float    "latitude"
   end
 
   add_index "users", ["authentication_token"], :name => "index_users_on_authentication_token", :unique => true

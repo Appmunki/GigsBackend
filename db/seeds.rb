@@ -5,3 +5,43 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+User.where(:username => 'demo*').destroy_all
+demoworker = Worker.find_or_create_by_email(username:  'demoworker',email:  'demoworker@appmunki.com',password: 'demoworker1',password_confirmation: 'demoworker1')
+demoemployer = Employer.find_or_create_by_email(username:  'demoemployer',email:  'demoemployer@appmunki.com',password: 'demoemployer1',password_confirmation: 'demoemployer1')
+if !demoemployer.save||!demoworker.save
+  puts 'demo already created'
+else
+  puts 'demo created'
+end
+
+10.times() do
+  5.times() do
+    gig = Gig.create(title: 'Dog Walking Job',description: 'I need someone to walk the dog while I am at work. You should be good with animals.',latitude: 37.019448, longitude: -76.360693,status: 'pending')
+    worker = Worker.create(username:  SecureRandom.hex(13),email:  SecureRandom.hex(13)+'@appmunki.com',password: 'demoworker1',password_confirmation: 'demoworker1')
+
+    gig.save
+
+    worker.gigs<<gig
+    demoemployer.gigs<<gig
+
+    worker.save
+  end
+  5.times() do
+    gig = Gig.create(title: 'Help me Job',description: 'I need someone to walk the dog while I am at work. You should be good with animals.',latitude: 37.019448, longitude: -76.360693,status: 'pending')
+    employer = Employer.create(username:  SecureRandom.hex(13),email:  SecureRandom.hex(13)+'@appmunki.com',password: 'demoemployer1',password_confirmation: 'demoemployer1')
+
+    gig.save
+
+    employer.gigs<<gig
+    demoworker.gigs<<gig
+
+    employer.save
+  end
+end
+
+gig = Gig.create(title: 'Dog Walking Job',description: 'I need someone to walk the dog while I am at work. You should be good with animals.',latitude: 37.019448, longitude: -76.360693,status: 'pending')
+gig.save!
+
+demoworker.gigs<<gig
+demoemployer.gigs<<gig
+

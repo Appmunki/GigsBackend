@@ -1,3 +1,4 @@
 class Worker < User
-	belongs_to :gig
+	has_many :gigs
+  has_many :employers ,through: :gigs
 end
