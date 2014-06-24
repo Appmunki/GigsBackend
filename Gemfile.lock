@@ -1,3 +1,12 @@
+GIT
+  remote: https://github.com/stripe/stripe-ruby
+  revision: bb9388384f8bade9cf257e5907679e7afaab85a6
+  specs:
+    stripe (1.14.0)
+      json (~> 1.8.1)
+      mime-types (~> 1.25)
+      rest-client (~> 1.4)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -222,4 +231,5 @@ DEPENDENCIES
   ruby-hmac
   sass-rails (~> 3.2.3)
   simple_token_authentication
+  stripe!
   uglifier (>= 1.0.3)

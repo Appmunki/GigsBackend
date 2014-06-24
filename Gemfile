@@ -50,3 +50,5 @@ gem 'quickblox'
 gem 'json'
 gem 'rest-client'
 gem 'multipart-post'
+
+gem 'stripe', :git => 'https://github.com/stripe/stripe-ruby'

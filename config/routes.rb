@@ -17,6 +17,8 @@ GigBackend::Application.routes.draw do
             post 'gigs' => 'gigs#create', :as => 'gigs'
             
 
+            resources :payment
+
             post 'employer/assign' => 'gigs#assign', :as => 'employer/assign'
 
         end
