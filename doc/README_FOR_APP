@@ -1,2 +1,6 @@
-Use this README file to introduce your application and point to useful places in the API for learning more.
+GigsBackend
+======================
+
+The backend for the mobile app and website for getting gigs
+
 Run "rake doc:app" to generate API documentation for your models, controllers, helpers, and libraries.
