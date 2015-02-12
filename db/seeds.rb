@@ -16,7 +16,7 @@ end
 
 10.times() do
   5.times() do
-    gig = Gig.create(title: 'Dog Walking Job',description: 'I need someone to walk the dog while I am at work. You should be good with animals.',latitude: 37.019448, longitude: -76.360693,status: 'pending')
+    gig = Gig.create(total_price: 0, title: 'Dog Walking Job',description: 'I need someone to walk the dog while I am at work. You should be good with animals.',latitude: 37.019448, longitude: -76.360693,status: 'pending')
     worker = Worker.create(username:  SecureRandom.hex(13),email:  SecureRandom.hex(13)+'@appmunki.com',password: 'demoworker1',password_confirmation: 'demoworker1')
 
     gig.save
@@ -27,7 +27,7 @@ end
     worker.save
   end
   5.times() do
-    gig = Gig.create(title: 'Help me Job',description: 'I need someone to walk the dog while I am at work. You should be good with animals.',latitude: 37.019448, longitude: -76.360693,status: 'pending')
+    gig = Gig.create(total_price: 0, title: 'Help me Job',description: 'I need someone to walk the dog while I am at work. You should be good with animals.',latitude: 37.019448, longitude: -76.360693,status: 'pending')
     employer = Employer.create(username:  SecureRandom.hex(13),email:  SecureRandom.hex(13)+'@appmunki.com',password: 'demoemployer1',password_confirmation: 'demoemployer1')
 
     gig.save
@@ -39,9 +39,17 @@ end
   end
 end
 
-gig = Gig.create(title: 'Dog Walking Job',description: 'I need someone to walk the dog while I am at work. You should be good with animals.',latitude: 37.019448, longitude: -76.360693,status: 'pending')
+gig = Gig.create(total_price: 0,title: 'Dog Walking Job',description: 'I need someone to walk the dog while I am at work. You should be good with animals.',latitude: 37.019448, longitude: -76.360693,status: 'pending')
 gig.save!
 
 demoworker.gigs<<gig
 demoemployer.gigs<<gig
 
+case Rails.env
+when "development"
+  AdminUser.where(:email => "admin@appmunki.com").destroy_all
+  AdminUser.create(email: 'admin@appmunki.com', password:'password')
+  puts 'admin created'
+when "production"
+
+end

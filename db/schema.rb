@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140529113529) do
+ActiveRecord::Schema.define(:version => 20150212174421) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.string   "resource_id",   :null => false
@@ -63,6 +63,7 @@ ActiveRecord::Schema.define(:version => 20140529113529) do
     t.integer  "employer_id"
     t.float    "longitude"
     t.float    "latitude"
+    t.float    "total_price"
   end
 
   create_table "jobs", :force => true do |t|
