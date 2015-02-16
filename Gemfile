@@ -8,6 +8,14 @@ gem 'rails', '3.2.9'
 
 gem 'pg'
 
+gem 'sass'
+group :test, :development do
+	gem "rspec-rails", "~> 2.0"
+	gem "factory_girl_rails", "~> 4.0"
+	gem "capybara"
+	gem "database_cleaner"
+	gem "selenium-webdriver"
+end
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
@@ -45,8 +53,7 @@ gem 'mailboxer'
 gem 'httpclient'
 gem 'gibberish'
 gem 'ruby-hmac'
-#gem 'quickblox', :git => 'git@github.com:linxinda/QuickBlox-RubyGem.git'
-gem 'quickblox'
 gem 'json'
 gem 'rest-client'
 gem 'multipart-post'
+gem 'bower-rails'

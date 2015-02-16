@@ -11,6 +11,17 @@ Things you may want to cover:
 
 * Configuration
 
+* Installing angular
+http://angular-rails.com/bootstrap.html
+
+First install node js
+
+sudo apt-get install nodejs
+npm install bower // install bower the dependency manager for angular
+
+rake -T bower /* list the task bower uses*/
+
+rake bower:install //installs the bower dependencies
 * Database creation
 setting up db
 rake db:setup
