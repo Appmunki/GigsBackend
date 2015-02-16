@@ -17,6 +17,7 @@ http://angular-rails.com/bootstrap.html
 First install node js
 
 sudo apt-get install nodejs
+
 npm install bower // install bower the dependency manager for angular
 
 rake -T bower /* list the task bower uses*/
