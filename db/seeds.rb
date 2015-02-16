@@ -39,7 +39,7 @@ end
   end
 end
 
-gig = Gig.create(total_price: 0,title: 'Dog Walking Job',description: 'I need someone to walk the dog while I am at work. You should be good with animals.',latitude: 37.019448, longitude: -76.360693,status: 'pending')
+gig = Gig.create(total_price: 0, title: 'Dog Walking Job',description: 'I need someone to walk the dog while I am at work. You should be good with animals.',latitude: 37.019448, longitude: -76.360693,status: 'pending')
 gig.save!
 
 demoworker.gigs<<gig
